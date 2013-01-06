@@ -1,0 +1,26 @@
+{
+  "name": "esb",
+  "description": "enterprise service bus implementation",
+  "version": "0.0.1",
+  "author": {
+    "name": "Ovi Comes",
+    "email": "ovi@netspedition.com"
+  },
+  "keywords": [
+    "esb",
+    "enterprise",
+    "service",
+    "bus",
+    "framework",
+    "web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/clonq/esb"
+  },
+  "main": "index",
+  "engines": {
+    "node": "*"
+  },
+  "readme": "enterprise service bus implementation for node.js"
+}
