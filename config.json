@@ -1,0 +1,7 @@
+{
+    "bind": {
+        "host": "localhost",
+        "port": 7011
+    },
+    "siteTitle": "Enterprse Service Bus"
+}

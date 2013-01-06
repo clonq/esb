@@ -1,0 +1,39 @@
+extends generic
+
+block append head
+    style(type='text/css')
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+block prepend body
+    .navbar.navbar-fixed-top
+        .navbar-inner
+            .container-fluid
+                a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+
+                a.brand(href='/') App
+                .btn-group.pull-right
+                    block profile_menu
+                        a.btn.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.icon-user
+                            |  Username&nbsp;
+                            span.caret
+                        ul.dropdown-menu
+                            li: a(href='#') Profile
+                            li.divider
+                            li: a(href='#') Sign Out
+
+                .nav-collapse
+                    ul.nav
+                        block main_menu
+                            li.active: a(href='/') Home
+
+block container
+    .span12
+        block content
+            .well Empty content block

@@ -1,0 +1,18 @@
+extends fullwidth
+
+block append head
+    style(type='text/css')
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+block container
+    .span3
+        .well.sidebar-nav
+            ul.nav.nav-list
+                block sidebar
+                    li.nav-header Empty sidebar
+
+    .span9
+        block content
+            .well Empty content block
