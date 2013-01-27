@@ -1,0 +1,28 @@
+{
+	"geo": {
+		"endpoint": "http://localhost:7010",
+		"services": {
+			"geocode": {
+				"version": 1.0,
+				"protocols": ["simple"]
+			},
+			"directions": {
+				"version": 1.0,
+				"protocols": ["simple"]
+			}
+		}
+	},
+	"cache": {
+		"endpoint": "http://localhost:7020",
+		"services": {
+			"get": {
+				"version": 1.0,
+				"protocols": ["simple"]
+			},
+			"put": {
+				"version": 1.0,
+				"protocols": ["simple"]
+			}
+		}
+	}
+}

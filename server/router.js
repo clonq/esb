@@ -1,14 +1,15 @@
 /**
  * Router
- * Copyright(c) 2013 Netspedition Inc <ovi@netspedition.com>
+ * Copyright(c) 2013 Netspedition Inc
  * MIT Licensed
  */
 var Protocol = require('../domain/Protocol')
-  , registry = require('../service/Registry').getInstance()
   , executor = require('../service/Executor')
+  , registry
 
 module.exports = function(configHash) {
     config = configHash;
+  	registry = require('../service/Registry').getInstance(config.services)
     return exports;
 }
 
