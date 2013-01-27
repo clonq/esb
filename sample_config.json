@@ -4,6 +4,10 @@
         "port": 7011
     },
     "services": "sample_services.json",
+    "web": {
+    	"public": "web/public",
+    	"views": "web/views"
+    },
     "siteTitle": "Enterprse Service Bus"
 }
 
