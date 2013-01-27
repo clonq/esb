@@ -14,7 +14,7 @@ exports.start = function(config) {
   var router = require('./router')(config)
 
   app.configure(function() {
-    app.set('views', config.jade_views);
+    app.set('views', config.web.views);
     app.set('view engine', 'jade');
     app.set('view options', { layout: false });
     app.use(express.favicon());
@@ -22,7 +22,7 @@ exports.start = function(config) {
     app.use(express.bodyParser({ keepExtensions: true, uploadDir: path.join(__dirname, 'uploads') }));    
     app.use(express.methodOverride());
     app.use(app.router);
-    app.use(express.static(config.static_web));    
+    app.use(express.static(config.web.public));    
   });
 
   app.configure('development', function(){
