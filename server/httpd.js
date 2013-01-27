@@ -1,6 +1,6 @@
 /**
  * HTTP Server
- * Copyright(c) 2013 Netspedition Inc <ovi@netspedition.com>
+ * Copyright(c) 2013 Netspedition Inc
  * MIT Licensed
  */
 
