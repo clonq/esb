@@ -3,11 +3,10 @@
         "host": "localhost",
         "port": 7011
     },
-    "services": "sample_services.json",
     "web": {
-    	"public": "web/public",
-    	"views": "web/views"
+        "public": "web/public",
+        "views": "web/views"
     },
-    "siteTitle": "Enterprse Service Bus"
+    "services": "sample_services.json",
+    "siteTitle": "Enterprise Service Bus"
 }
-

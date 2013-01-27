@@ -1,7 +1,7 @@
 {
   "name": "esb",
   "description": "enterprise service bus implementation",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "author": {
     "name": "Netspedition"
   },
@@ -26,5 +26,5 @@
   "engines": {
     "node": "*"
   },
-  "readme": "enterprise service bus implementation for node.js"
+  "readme": "enterprise service bus for node"
 }
