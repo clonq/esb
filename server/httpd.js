@@ -18,6 +18,7 @@ app.configure(function() {
   app.set('view options', { layout: false });
   app.use(express.favicon());
   app.use(express.logger('dev'));
+  app.use(express.bodyParser({ keepExtensions: true, uploadDir: path.join(__dirname, 'uploads') }));    
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static('./web/public'));    
@@ -28,9 +29,10 @@ app.configure('development', function(){
 });
 
 app.get('/', router.index);
-app.get('/request', router.request);
-app.get('/respond', router.respond);
+app.post('/request', router.request);
+app.post('/respond', router.respond);
 
 http.createServer(app).listen(config.bind.port, config.bind.host, function () {
   console.log("Enterprise Service Bus started on port " + config.bind.port);
 });
+

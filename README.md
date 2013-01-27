@@ -1,4 +1,9 @@
 # esb
 
- * an enterprise service bus implementation for [node](http://nodejs.org)
- * with barebone web support
+Enterprise Service Bus implementation for [node](http://nodejs.org)
+
+@todo
+* dynamically register/unregister a service
+* queryable service registry
+* service reliability scoring
+* support for other protocols
