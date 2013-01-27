@@ -1,21 +1,20 @@
 /**
  * Registry
- * Copyright(c) 2013 Netspedition Inc <ovi@netspedition.com>
+ * Copyright(c) 2013 Netspedition Inc
  * MIT Licensed
  */
-const SERVICES_FILENAME = './services.json'
 
 var fs = require('fs')
-  , services
+  , services = {}
 
 exports.Registry = Registry;
 
-exports.getInstance = function () {
-    return new Registry();
+exports.getInstance = function (servicesFilename) {
+    return new Registry(servicesFilename);
 }
 
-function Registry() {
-	loadServices();
+function Registry(servicesFilename) {
+	loadServices(servicesFilename);
 }
 
 Registry.prototype.getService = function(destination) {
@@ -31,6 +30,20 @@ Registry.prototype.getService = function(destination) {
 	return ret;
 }
 
-function loadServices() {
-	services = JSON.parse(fs.readFileSync(SERVICES_FILENAME));
+function loadServices(servicesFilename) {
+	if(fs.existsSync(servicesFilename)) {
+		services = JSON.parse(fs.readFileSync(servicesFilename));
+		if(services) {
+			console.info('Available Services:')
+			for(serviceName in services) {
+				console.log('  ' + serviceName + ' [endpoint: ' + services[serviceName].endpoint + ']')
+				for(method in services[serviceName].services) {
+					console.log('    ' + method + ' [ver: ' + services[serviceName].services[method].version + ', protocols: ' + services[serviceName].services[method].protocols + ']')
+				}
+			}
+		}
+	} else {
+		console.warn('File not found: ' + servicesFilename)
+		console.warn('No services available')
+	}
 }

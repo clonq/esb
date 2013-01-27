@@ -1,21 +1,10 @@
 /**
  * Executor
- * Copyright(c) 2013 Netspedition Inc <ovi@netspedition.com>
+ * Copyright(c) 2013 Netspedition Inc
  * MIT Licensed
  */
 var request = require('request')
 
-//exports.Executor = Executor;
-
-// exports.getInstance = function () {
-//     return new Executor();
-// }
-
-// function Executor() {
-// 	loadServices();
-// }
-
-// Executor.prototype.getService = function(destination) {
 exports.invoke = function(service, protocol, cb) {
 	var ret = {err: null, data: null}
  	var method = protocol.payload.method;
