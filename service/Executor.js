@@ -18,10 +18,9 @@ exports.invoke = function(service, protocol, cb) {
 	 		validParameterCounter++ 
  		}
  	}
-	console.log('invoking [' + serviceRequestUrl + ']')
+//	console.log('invoking [' + serviceRequestUrl + ']')
 	request.get(serviceRequestUrl, function (error, response, body) {
 		if(error) {
-//			err = {}
 			if(body) ret.err = JSON.parse(body);
 			else ret.err = 'unknown error'; 
 		} else {
@@ -30,8 +29,14 @@ exports.invoke = function(service, protocol, cb) {
 			} else if (response.statusCode == 404) {
 				ret.err = {msg: 'wrong address / method'}
 	  		} else {
-				ret.err = JSON.parse(body);
-	  			ret.err.code = response.statusCode
+				ret.err = {err: 'unknown error'}
+	  			try {
+					ret.err = JSON.parse(body)
+		  			ret.err.code = response.statusCode
+	  			} catch(e) {
+	  				if(body) console.log(body.substring(0, 255) + '...')
+	  				// ignore non-json response parsing errors
+	  			}
 	  		}
 		}
   		cb(ret.err, ret.data);
