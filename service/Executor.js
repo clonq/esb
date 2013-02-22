@@ -5,6 +5,9 @@
  */
 var request = require('request')
 
+const UNKNOWN_ERROR = 500
+const SERVICE_NOT_AVAILABLE = 404
+
 exports.invoke = function(service, protocol, cb) {
 	var ret = {err: null, data: null}
  	var method = protocol.payload.method;
@@ -18,20 +21,28 @@ exports.invoke = function(service, protocol, cb) {
 	 		validParameterCounter++ 
  		}
  	}
-//	console.log('invoking [' + serviceRequestUrl + ']')
+ // console.log('invoking [' + serviceRequestUrl + ']')
 	request.get(serviceRequestUrl, function (error, response, body) {
 		if(error) {
-			if(body) ret.err = JSON.parse(body);
-			else ret.err = 'unknown error'; 
+			ret.err = {msg:'unknown error'}
+			if(body) {
+				try {
+					ret.err.msg = JSON.parse(body);
+				} catch(e) {
+					console.log('Executor: cannot parse response: ' + body)
+				}
+			} else {
+				if(error.code == 'ECONNREFUSED') ret.err.code = SERVICE_NOT_AVAILABLE
+			}
 		} else {
 			if (response.statusCode == 200) {
 				ret.data = body;
 			} else if (response.statusCode == 404) {
-				ret.err = {msg: 'wrong address / method'}
+				ret.err = {code: SERVICE_NOT_AVAILABLE, msg: 'wrong address / method'}
 	  		} else {
-				ret.err = {err: 'unknown error'}
+				ret.err = {code: UNKNOWN_ERROR, msg: 'unknown error'}
 	  			try {
-					ret.err = JSON.parse(body)
+					ret.err.msg = JSON.parse(body)
 		  			ret.err.code = response.statusCode
 	  			} catch(e) {
 	  				if(body) console.log(body.substring(0, 255) + '...')
@@ -39,6 +50,8 @@ exports.invoke = function(service, protocol, cb) {
 	  			}
 	  		}
 		}
+		if(ret.err) console.log(ret.err)
+		if(ret.data) console.log(ret.data)
   		cb(ret.err, ret.data);
 	});
 }
