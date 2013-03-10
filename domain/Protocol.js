@@ -19,6 +19,9 @@ Protocol.prototype.parse = function(request) {
 				if('SIMPLE' == request.protocol.name.toUpperCase()) {
 					ret.destination = request.destination;
 					ret.payload = request.payload;
+				} else if('GZIP' == request.protocol.name.toUpperCase()) {
+					ret.destination = request.destination;
+					ret.payload = request.payload;
 				}
 			} else {
 				// assume simple protocol

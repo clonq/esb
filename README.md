@@ -22,7 +22,7 @@ Use the supplied sample_config.json as a base for your own config.json.
 
   * Built on [Express](http://github.com/visionmedia/expressjs.com)
   * Custom versionable service protocols
-  * Protocols available: HTTP
+  * Protocols available: Simple and Gzip over HTTP
   * documentation publishable via the embedded web server
 
 ## Philosophy
@@ -33,4 +33,5 @@ This [ESB](http://en.wikipedia.org/wiki/Enterprise_service_bus) implementation i
 * message queuing & persistence
 * queryable service registry
 * service reliability scoring
+* virtualize same-name providers under one interface
 * support for other protocols
