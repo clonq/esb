@@ -13,13 +13,15 @@ exports.invoke = function(service, protocol, cb) {
  	var method = protocol.payload.method;
  	var params = protocol.payload.parameters;
  	var serviceRequestUrl = service.endpoint + '/' + method
- 	var validParameterCounter = 0;
- 	for(var i=0; i<params.length; i++) {
- 		if(params[i].name && params[i].value) {
-	 		serviceRequestUrl += (validParameterCounter==0)?'?':'&';
-	 		serviceRequestUrl += params[i].name + '=' + params[i].value;
-	 		validParameterCounter++ 
- 		}
+ 	if(params) {
+	 	var validParameterCounter = 0;
+	 	for(var i=0; i<params.length; i++) {
+	 		if(params[i].name && params[i].value) {
+		 		serviceRequestUrl += (validParameterCounter==0)?'?':'&';
+		 		serviceRequestUrl += params[i].name + '=' + params[i].value;
+		 		validParameterCounter++ 
+	 		}
+	 	}
  	}
  // console.log('invoking [' + serviceRequestUrl + ']')
 	request.get(serviceRequestUrl, function (error, response, body) {
