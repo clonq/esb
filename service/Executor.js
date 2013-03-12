@@ -23,7 +23,6 @@ exports.invoke = function(service, protocol, cb) {
 	 		}
 	 	}
  	}
- // console.log('invoking [' + serviceRequestUrl + ']')
 	request.get(serviceRequestUrl, function (error, response, body) {
 		if(error) {
 			ret.err = {msg:'unknown error'}
@@ -53,7 +52,7 @@ exports.invoke = function(service, protocol, cb) {
 	  		}
 		}
 		if(ret.err) console.log(ret.err)
-		if(ret.data) console.log(ret.data)
+//		if(ret.data) console.log(ret.data)
   		cb(ret.err, ret.data);
 	});
 }
