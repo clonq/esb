@@ -25,6 +25,7 @@ exports.invoke = function(service, protocol, cb) {
  	}
 	request.get(serviceRequestUrl, function (error, response, body) {
 		if(error) {
+			console.log('ejsbjs Executor: ' + error);
 			ret.err = {msg:'unknown error'}
 			if(body) {
 				try {
